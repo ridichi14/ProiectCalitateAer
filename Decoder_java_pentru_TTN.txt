@@ -1,0 +1,28 @@
+function decodeUplink(input) {
+  var data = {};
+  var bytes = input.bytes;
+
+  // Standard concentrations
+  data.pm10_std = (bytes[0] << 8) | bytes[1];
+  data.pm25_std = (bytes[2] << 8) | bytes[3];
+  data.pm100_std = (bytes[4] << 8) | bytes[5];
+
+  // Environmental concentrations
+  data.pm10_env = (bytes[6] << 8) | bytes[7];
+  data.pm25_env = (bytes[8] << 8) | bytes[9];
+  data.pm100_env = (bytes[10] << 8) | bytes[11];
+
+  // Particle counts
+  data.particles_03um = (bytes[12] << 8) | bytes[13];
+  data.particles_05um = (bytes[14] << 8) | bytes[15];
+  data.particles_10um = (bytes[16] << 8) | bytes[17];
+  data.particles_25um = (bytes[18] << 8) | bytes[19];
+  data.particles_50um = (bytes[20] << 8) | bytes[21];
+  data.particles_100um = (bytes[22] << 8) | bytes[23];
+
+  return {
+    data: data,
+    warnings: [],
+    errors: []
+  };
+}
